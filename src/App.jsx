@@ -1,15 +1,11 @@
 import { useState } from 'react'
-import { findDOMNode } from 'react-dom';
-import $ from 'jquery'
 
 function App() {
   const [play, setPlay] = useState("Q")
   
-  
-  $(document).ready(function(){
-    $("p").click(function(event){setPlay(event.target.value)});
-    console.log(play)
-  });
+  const playMusic = (event) => {
+    play = event.target.value
+  }
 
   return (
     <div className="h-screen bg-gray">
@@ -17,15 +13,15 @@ function App() {
           <div className='flex items-center gap-6 bg-gray-300'  >
             <div className='flex gap-2 border-4 border-yellow-400'>
               <div className='bg-gray grid grid-cols-3 p-4 gap-y-4 gap-x-6'>
-                <p className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>Q</p>      
-                <p className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>W</p>      
-                <p className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>E</p>      
-                <p className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>A</p>      
-                <p className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>S</p>      
-                <p className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>D</p>      
-                <p className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>Z</p>      
-                <p className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>X</p>      
-                <p className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>C</p>      
+                <p onClick={playMusic} className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>Q</p>      
+                <p onClick={playMusic} className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>W</p>      
+                <p onClick={playMusic} className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>E</p>      
+                <p onClick={playMusic} className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>A</p>      
+                <p onClick={playMusic} className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>S</p>      
+                <p onClick={playMusic} className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>D</p>      
+                <p onClick={playMusic} className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>Z</p>      
+                <p onClick={playMusic} className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>X</p>      
+                <p onClick={playMusic} className='bg-red-500 px-6 py-4 text-center rounded-md drum-pad'>C</p>      
               </div>
               <div className='flex flex-col justify-center p-4 border-l-4 border-white space-y-10'>
                 <div className='flex justify-center gap-2'>
