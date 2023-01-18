@@ -5,6 +5,8 @@ function App() {
 // declaring states and audio
   const [power, setPower] = useState("Off")
   const [textBox, setTextBox] = useState("Welcome")
+  // const [volume, setVolume] = useState("50")
+  const volumeElement = document.getElementById("volume");
   const audio = new Audio()
   
 // toggle power function 
@@ -14,7 +16,6 @@ function App() {
       setTextBox("Play ")
     }
     else{
-      console.log("abhi off hua")
       setPower("Off") 
       setTextBox("Turn on Power")
     }
@@ -66,6 +67,7 @@ function App() {
         case "C":
           audio.src = "src/music/Closed-HH.mp3";  
           setTextBox("Closed HH");
+          break;
         }
         audio.play();
       }
@@ -121,6 +123,7 @@ const keyPressMusic = (event) => {
       case "C":
         audio.src = "src/music/Closed-HH.mp3";  
         setTextBox("Closed HH");
+        break;
       }
       audio.play();
   }
@@ -134,12 +137,25 @@ const keyPressMusic = (event) => {
       setTextBox("Turn on Power")
     }
   }
+  
+  // volume change function
+  // const onVolumeChange = () => {
+  //   const volumeElement = document.getElementById("volume");
+  //   volumeElement.addEventListener("change", () => {
+  //     audio.volume = volumeElement.value / 100;
+  //     console.log(audio.volume)
+  //   })
+  // } 
+  
+  const onVolumeChange = () => {
+    console.log(volumeElement.value / 100)
+    // audio.volume = volumeElement.value / 100 ;
+    volumeElement.volume = 0
+    console.log(audio.volume)
+  }
 
-  // const audioControl = () => {
-  //   audio.volume = volume.value / 100;
-  // }
 // use effect hook
-  // useEffect()
+  // useEffect(onVolumeChange, []);
   useEffect(onKeyPress,[power]);
 
   return (
@@ -170,7 +186,7 @@ const keyPressMusic = (event) => {
 
                 <div className='flex flex-col justify-center align-middle p-2 pt-0 gap-2'>
                   <p className='text-center'>Volume</p>
-                  <input id='volume'  type="range" min="0" max="100"/>
+                  <input id='volume' type="range" name='volume' onChange={onVolumeChange} min="0" max="100"/>
                 </div>
 
               </div>
@@ -183,4 +199,3 @@ const keyPressMusic = (event) => {
 
 export default App
 
-// onChange={audioControl} value={volume}
