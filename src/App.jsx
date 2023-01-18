@@ -1,27 +1,29 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 
 function App() {
+// declaring states and audio
   const [power, setPower] = useState("Off")
   const [textBox, setTextBox] = useState("Welcome")
-
   const audio = new Audio()
-
+  
+// toggle power function 
   const togglePower = ()=> {
     if(power == "Off") {
       setPower("On") 
       setTextBox("Play ")
     }
     else{
+      console.log("abhi off hua")
       setPower("Off") 
       setTextBox("Turn on Power")
     }
   }
+// play music function using click
   const playMusic = (event) => {
-    console.log(event.target.innerHTML)
-    console.log(textBox)
     if(power == "On"){
       switch(event.target.innerHTML){
-        case "Q":
+        case ("Q"):
           audio.src = "src/music/Heater-1.mp3";
           setTextBox("Heater 1");
           break;
@@ -71,6 +73,71 @@ function App() {
         setTextBox("Turn on Power")
       }
     }
+// play music function using key press event listener
+  const onKeyPress = () => {
+    console.log(power)
+    if(power == "On"){
+      window.addEventListener('keydown', (event) => {
+      const key = event.key.toUpperCase()
+      console.log(key)
+          console.log("its on")
+        switch(key){
+          case ("Q"):
+            audio.src = "src/music/Heater-1.mp3";
+            setTextBox("Heater 1");
+            break;
+        
+          case "W":
+            audio.src = "src/music/Heater-2.mp3";
+            setTextBox("Heater 2");
+            break;
+  
+          case "E":
+            audio.src = "src/music/Heater-3.mp3";
+            setTextBox("Heater 3");
+            break;
+        
+          case "A":
+            audio.src = "src/music/Heater-4.mp3";
+            setTextBox("Heater 4");
+            break;
+          
+          case "S":
+            audio.src = "src/music/Clap.mp3";
+            setTextBox("Clap");
+            break;
+        
+          case "D":
+            audio.src = "src/music/Open-HH.mp3";
+            setTextBox("Open HH");
+            break;
+        
+          case "Z":
+            audio.src = "src/music/Kick_n_Hat.mp3";
+            setTextBox("Kick n' Hat");
+            break;
+        
+          case "X":
+            audio.src = "src/music/Kick.mp3";
+            setTextBox("Kick");
+            break;
+          
+          case "C":
+            audio.src = "src/music/Closed-HH.mp3";  
+            setTextBox("Closed HH");
+          
+          default:
+            audio.src = ""
+
+            audio.play();
+        }
+      })
+    }
+    else{
+      setTextBox("Turn on Power")
+    }
+  }
+  useEffect(onKeyPress,[]);
 
   return (
     <div className="h-screen bg-gray">
