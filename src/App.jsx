@@ -73,71 +73,74 @@ function App() {
         setTextBox("Turn on Power")
       }
     }
-// play music function using key press event listener
-  const onKeyPress = () => {
-    console.log(power)
-    if(power == "On"){
-      window.addEventListener('keydown', (event) => {
-      const key = event.key.toUpperCase()
-      console.log(key)
-          console.log("its on")
-        switch(key){
-          case ("Q"):
-            audio.src = "src/music/Heater-1.mp3";
-            setTextBox("Heater 1");
-            break;
-        
-          case "W":
-            audio.src = "src/music/Heater-2.mp3";
-            setTextBox("Heater 2");
-            break;
-  
-          case "E":
-            audio.src = "src/music/Heater-3.mp3";
-            setTextBox("Heater 3");
-            break;
-        
-          case "A":
-            audio.src = "src/music/Heater-4.mp3";
-            setTextBox("Heater 4");
-            break;
-          
-          case "S":
-            audio.src = "src/music/Clap.mp3";
-            setTextBox("Clap");
-            break;
-        
-          case "D":
-            audio.src = "src/music/Open-HH.mp3";
-            setTextBox("Open HH");
-            break;
-        
-          case "Z":
-            audio.src = "src/music/Kick_n_Hat.mp3";
-            setTextBox("Kick n' Hat");
-            break;
-        
-          case "X":
-            audio.src = "src/music/Kick.mp3";
-            setTextBox("Kick");
-            break;
-          
-          case "C":
-            audio.src = "src/music/Closed-HH.mp3";  
-            setTextBox("Closed HH");
-          
-          default:
-            audio.src = ""
 
-            audio.play();
-        }
-      })
+// play music function using key press event listener
+const keyPressMusic = (event) => {
+  const key = event.key.toUpperCase()
+    switch(key){
+      case ("Q"):
+        audio.src = "src/music/Heater-1.mp3";
+        setTextBox("Heater 1");
+        break;
+    
+      case "W":
+        audio.src = "src/music/Heater-2.mp3";
+        setTextBox("Heater 2");
+        break;
+
+      case "E":
+        audio.src = "src/music/Heater-3.mp3";
+        setTextBox("Heater 3");
+        break;
+    
+      case "A":
+        audio.src = "src/music/Heater-4.mp3";
+        setTextBox("Heater 4");
+        break;
+      
+      case "S":
+        audio.src = "src/music/Clap.mp3";
+        setTextBox("Clap");
+        break;
+    
+      case "D":
+        audio.src = "src/music/Open-HH.mp3";
+        setTextBox("Open HH");
+        break;
+    
+      case "Z":
+        audio.src = "src/music/Kick_n_Hat.mp3";
+        setTextBox("Kick n' Hat");
+        break;
+    
+      case "X":
+        audio.src = "src/music/Kick.mp3";
+        setTextBox("Kick");
+        break;
+      
+      case "C":
+        audio.src = "src/music/Closed-HH.mp3";  
+        setTextBox("Closed HH");
+      }
+      audio.play();
+  }
+  
+  const onKeyPress = () => {
+    if(power == "On"){
+      window.addEventListener('keydown', keyPressMusic)
+      return () => {window.removeEventListener('keydown', keyPressMusic); }
     }
     else{
       setTextBox("Turn on Power")
     }
   }
-  useEffect(onKeyPress,[]);
+
+  // const audioControl = () => {
+  //   audio.volume = volume.value / 100;
+  // }
+// use effect hook
+  // useEffect()
+  useEffect(onKeyPress,[power]);
 
   return (
     <div className="h-screen bg-gray">
@@ -167,7 +170,7 @@ function App() {
 
                 <div className='flex flex-col justify-center align-middle p-2 pt-0 gap-2'>
                   <p className='text-center'>Volume</p>
-                  <input id='volume' type="range" min="0" max="100"/>
+                  <input id='volume'  type="range" min="0" max="100"/>
                 </div>
 
               </div>
@@ -179,3 +182,5 @@ function App() {
 }
 
 export default App
+
+// onChange={audioControl} value={volume}
