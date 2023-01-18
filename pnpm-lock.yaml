@@ -6,7 +6,6 @@ specifiers:
   '@vitejs/plugin-react': ^3.0.0
   autoprefixer: ^10.4.13
   datatables.net: ^1.13.1
-  jquery: ^3.6.3
   postcss: ^8.4.21
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -15,7 +14,6 @@ specifiers:
 
 dependencies:
   datatables.net: 1.13.1
-  jquery: 3.6.3
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 

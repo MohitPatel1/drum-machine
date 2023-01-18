@@ -6,8 +6,7 @@ function App() {
   const [power, setPower] = useState("Off")
   const [textBox, setTextBox] = useState("Welcome")
   // const [volume, setVolume] = useState("50")
-  const volumeElement = document.getElementById("volume");
-  const audio = new Audio()
+
   
 // toggle power function 
   const togglePower = ()=> {
@@ -146,12 +145,12 @@ const keyPressMusic = (event) => {
   //     console.log(audio.volume)
   //   })
   // } 
+
+  const volumeElement = document.getElementById("volume");
+  const audio = new Audio()
   
   const onVolumeChange = () => {
-    console.log(volumeElement.value / 100)
-    // audio.volume = volumeElement.value / 100 ;
-    volumeElement.volume = 0
-    console.log(audio.volume)
+    audio.volume = volumeElement.value / 100 ;
   }
 
 // use effect hook
