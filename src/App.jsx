@@ -1,12 +1,21 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
+import Heater1 from "./music/Heater1.mp3"
+import Heater2 from "./music/Heater2.mp3"
+import Heater3 from "./music/Heater3.mp3"
+import Heater4 from "./music/Heater2.mp3"
+import clap from "./music/Clap.mp3"
+import Open_HH from "./music/Open_HH.mp3"
+import Kick_n_Hat from "./music/Kick_n_Hat.mp3"
+import Kick from "./music/Kick.mp3"
+import Closed_HH from "./music/Closed_HH.mp3"
 
 function App() {
 // declaring states and audio
   const [power, setPower] = useState("Off")
   const [textBox, setTextBox] = useState("Welcome")
   // const [volume, setVolume] = useState("50")
-
+console.log(clap)
   
 // toggle power function 
   const togglePower = ()=> {
@@ -24,47 +33,47 @@ function App() {
     if(power == "On"){
       switch(event.target.innerHTML){
         case ("Q"):
-          audio.src = "src/music/Heater-1.mp3";
+          audio.src = Heater1;
           setTextBox("Heater 1");
           break;
       
         case "W":
-          audio.src = "src/music/Heater-2.mp3";
+          audio.src = Heater2;
           setTextBox("Heater 2");
           break;
 
         case "E":
-          audio.src = "src/music/Heater-3.mp3";
+          audio.src = Heater3;
           setTextBox("Heater 3");
           break;
       
         case "A":
-          audio.src = "src/music/Heater-4.mp3";
+          audio.src = Heater4;
           setTextBox("Heater 4");
           break;
         
         case "S":
-          audio.src = "src/music/Clap.mp3";
+          audio.src = clap;
           setTextBox("Clap");
           break;
       
         case "D":
-          audio.src = "src/music/Open-HH.mp3";
+          audio.src = Open_HH;
           setTextBox("Open HH");
           break;
       
         case "Z":
-          audio.src = "src/music/Kick_n_Hat.mp3";
+          audio.src = Kick_n_Hat;
           setTextBox("Kick n' Hat");
           break;
       
         case "X":
-          audio.src = "src/music/Kick.mp3";
+          audio.src = Kick;
           setTextBox("Kick");
           break;
         
         case "C":
-          audio.src = "src/music/Closed-HH.mp3";  
+          audio.src = Closed_HH;  
           setTextBox("Closed HH");
           break;
         }
@@ -78,53 +87,53 @@ function App() {
 // play music function using key press event listener
 const keyPressMusic = (event) => {
   const key = event.key.toUpperCase()
-    switch(key){
-      case ("Q"):
-        audio.src = "src/music/Heater-1.mp3";
-        setTextBox("Heater 1");
-        break;
-    
-      case "W":
-        audio.src = "src/music/Heater-2.mp3";
-        setTextBox("Heater 2");
-        break;
+  switch(key){
+    case ("Q"):
+      audio.src = Heater1;
+      setTextBox("Heater 1");
+      break;
+  
+    case "W":
+      audio.src = Heater2;
+      setTextBox("Heater 2");
+      break;
 
-      case "E":
-        audio.src = "src/music/Heater-3.mp3";
-        setTextBox("Heater 3");
-        break;
+    case "E":
+      audio.src = Heater3;
+      setTextBox("Heater 3");
+      break;
+  
+    case "A":
+      audio.src = Heater4;
+      setTextBox("Heater 4");
+      break;
     
-      case "A":
-        audio.src = "src/music/Heater-4.mp3";
-        setTextBox("Heater 4");
-        break;
-      
-      case "S":
-        audio.src = "src/music/Clap.mp3";
-        setTextBox("Clap");
-        break;
+    case "S":
+      audio.src = clap;
+      setTextBox("Clap");
+      break;
+  
+    case "D":
+      audio.src = Open_HH;
+      setTextBox("Open HH");
+      break;
+  
+    case "Z":
+      audio.src = Kick_n_Hat;
+      setTextBox("Kick n' Hat");
+      break;
+  
+    case "X":
+      audio.src = Kick;
+      setTextBox("Kick");
+      break;
     
-      case "D":
-        audio.src = "src/music/Open-HH.mp3";
-        setTextBox("Open HH");
-        break;
-    
-      case "Z":
-        audio.src = "src/music/Kick_n_Hat.mp3";
-        setTextBox("Kick n' Hat");
-        break;
-    
-      case "X":
-        audio.src = "src/music/Kick.mp3";
-        setTextBox("Kick");
-        break;
-      
-      case "C":
-        audio.src = "src/music/Closed-HH.mp3";  
-        setTextBox("Closed HH");
-        break;
-      }
-      audio.play();
+    case "C":
+      audio.src = Closed_HH;  
+      setTextBox("Closed HH");
+      break;
+    }
+    audio.play();
   }
   
   const onKeyPress = () => {
@@ -148,7 +157,7 @@ const keyPressMusic = (event) => {
 
   const volumeElement = document.getElementById("volume");
   const audio = new Audio()
-  
+
   const onVolumeChange = () => {
     audio.volume = volumeElement.value / 100 ;
   }
