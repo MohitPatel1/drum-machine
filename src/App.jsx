@@ -28,6 +28,7 @@ function App() {
       setTextBox("Turn on Power")
     }
   }
+  
   // play music function
   
   const playMusic = (input) => {
@@ -37,39 +38,41 @@ function App() {
           audio.src = Heater1;
           setTextBox("Heater 1");
           break;
-          case "W":
-            audio.src = Heater2;
-            setTextBox("Heater 2");
-            break;
-            case "E":
-              audio.src = Heater3;
-              setTextBox("Heater 3");
+        case "W":
+          audio.src = Heater2;
+          setTextBox("Heater 2");
+          break;
+        case "E":
+          audio.src = Heater3;
+          setTextBox("Heater 3");
           break;
         case "A":
           audio.src = Heater4;
           setTextBox("Heater 4");
           break;
-          case "S":
-            audio.src = clap;
-            setTextBox("Clap");
-            break;
-            case "D":
-              audio.src = Open_HH;
-              setTextBox("Open HH");
-              break;
-              case "Z":
-                audio.src = Kick_n_Hat;
-                setTextBox("Kick n' Hat");
-                break;
-                case "X":
-                  audio.src = Kick;
-                  setTextBox("Kick");
-                  break;
-                  case "C":
+         case "S":
+          audio.src = clap;
+          setTextBox("Clap");
+          break;
+        case "D":
+          audio.src = Open_HH;
+          setTextBox("Open HH");
+          break;
+        case "Z":
+          audio.src = Kick_n_Hat;
+          setTextBox("Kick n' Hat");
+          break;
+        case "X":
+          audio.src = Kick;
+          setTextBox("Kick");
+          break;
+        case "C":
           audio.src = Closed_HH;
           setTextBox("Closed HH");
           break;
         }
+        audio.volume = volumeElement.value / 100 
+        setVolume(volumeElement.value)
         audio.play();
       }
     else {
@@ -93,19 +96,8 @@ function App() {
   const [volume, setVolume] = useState("10")
   
   const volumeControl = () => {    
-    audio.volume = volumeElement.value / 100 
     setVolume(volumeElement.value)
-    console.log(volumeElement.value)
-    console.log(audio.volume)
   }
-  
-  
-  // volumeElement.addEventListener("change", () => {
-    //   audio.volume = volumeElement.value / 100;
-    //   console.log(audio.volume)
-    // })
-    
-    
 
     const onKeyPress = () => {
       if(power == "On"){
