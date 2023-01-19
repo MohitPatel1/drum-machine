@@ -14,8 +14,9 @@ function App() {
   // declaring states and audio
   const [power, setPower] = useState("Off")
   const [textBox, setTextBox] = useState("Welcome")
-  // const [volume, setVolume] = useState("50")
-
+  const volumeElement = document.getElementById("volume");
+  const audio = new Audio()
+  
   // toggle power function 
   const togglePower = () => {
     if (power == "Off") {
@@ -28,7 +29,7 @@ function App() {
     }
   }
   // play music function
-
+  
   const playMusic = (input) => {
     if (power == "On") {
       switch (input) {
@@ -36,46 +37,46 @@ function App() {
           audio.src = Heater1;
           setTextBox("Heater 1");
           break;
-        case "W":
-          audio.src = Heater2;
-          setTextBox("Heater 2");
-          break;
-        case "E":
-          audio.src = Heater3;
-          setTextBox("Heater 3");
+          case "W":
+            audio.src = Heater2;
+            setTextBox("Heater 2");
+            break;
+            case "E":
+              audio.src = Heater3;
+              setTextBox("Heater 3");
           break;
         case "A":
           audio.src = Heater4;
           setTextBox("Heater 4");
           break;
-        case "S":
-          audio.src = clap;
-          setTextBox("Clap");
-          break;
-        case "D":
-          audio.src = Open_HH;
-          setTextBox("Open HH");
-          break;
-        case "Z":
-          audio.src = Kick_n_Hat;
-          setTextBox("Kick n' Hat");
-          break;
-        case "X":
-          audio.src = Kick;
-          setTextBox("Kick");
-          break;
-        case "C":
+          case "S":
+            audio.src = clap;
+            setTextBox("Clap");
+            break;
+            case "D":
+              audio.src = Open_HH;
+              setTextBox("Open HH");
+              break;
+              case "Z":
+                audio.src = Kick_n_Hat;
+                setTextBox("Kick n' Hat");
+                break;
+                case "X":
+                  audio.src = Kick;
+                  setTextBox("Kick");
+                  break;
+                  case "C":
           audio.src = Closed_HH;
           setTextBox("Closed HH");
           break;
+        }
+        audio.play();
       }
-      audio.play();
-    }
     else {
       setTextBox("Turn on Power")
     }
   }
-
+  
   // play music function using click
   const onClickMusic = (event) => {
     const click = event.target.innerHTML
@@ -87,22 +88,24 @@ function App() {
     const key = event.key.toUpperCase()
     playMusic(key)
   }
-
-    // volume change function
-    // const onVolumeChange = () => {
-    //   const volumeElement = document.getElementById("volume");
-    //   volumeElement.addEventListener("change", () => {
-    //     audio.volume = volumeElement.value / 100;
-    //     console.log(audio.volume)
-    //   })
-    // } 
-
-    const volumeElement = document.getElementById("volume");
-    const audio = new Audio()
-
-    const onVolumeChange = () => {
-      audio.volume = volumeElement.value / 100;
-    }
+  
+  // volume change function
+  const [volume, setVolume] = useState("10")
+  
+  const volumeControl = () => {    
+    audio.volume = volumeElement.value / 100 
+    setVolume(volumeElement.value)
+    console.log(volumeElement.value)
+    console.log(audio.volume)
+  }
+  
+  
+  // volumeElement.addEventListener("change", () => {
+    //   audio.volume = volumeElement.value / 100;
+    //   console.log(audio.volume)
+    // })
+    
+    
 
     const onKeyPress = () => {
       if(power == "On"){
@@ -146,7 +149,7 @@ function App() {
 
                 <div className='flex flex-col justify-center align-middle p-2 pt-0 gap-2'>
                   <p className='text-center'>Volume</p>
-                  <input id='volume' type="range" name='volume' onChange={onVolumeChange} min="0" max="100" />
+                  <input id='volume' type="range" name='volume' onChange={volumeControl} value={volume} min="0" max="100" />
                 </div>
 
               </div>
